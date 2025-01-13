@@ -41,28 +41,33 @@ const businessData = {
 
 export default function PublicBusinessPage() {
   return (
-    <div className="container mx-auto p-6 space-y-6">
-      <Card className="w-full">
+    <div className="container mx-auto p-6 space-y-6 bg-[#F2FCE2]/20">
+      <Card className="w-full glass-card border-[#9b87f5]/20">
         <CardHeader>
           <div className="flex items-start justify-between">
             <div>
-              <CardTitle className="text-2xl font-bold">{businessData.name}</CardTitle>
-              <div className="flex items-center gap-2 mt-2">
+              <CardTitle className="text-2xl font-bold text-[#6E59A5]">
+                {businessData.name}
+              </CardTitle>
+              <div className="flex items-center gap-2 mt-2 text-[#7E69AB]">
                 <div className="flex items-center">
-                  <Star className="w-5 h-5 text-yellow-400 fill-current" />
+                  <Star className="w-5 h-5 text-[#9b87f5] fill-current" />
                   <span className="ml-1 font-medium">{businessData.rating}</span>
                 </div>
-                <span className="text-muted-foreground">
+                <span className="text-[#7E69AB]/70">
                   ({businessData.totalReviews} reviews)
                 </span>
               </div>
             </div>
-            <Badge variant="secondary" className="flex items-center gap-1">
+            <Badge 
+              variant="secondary" 
+              className="flex items-center gap-1 bg-[#E5DEFF] text-[#6E59A5] hover:bg-[#D6BCFA]"
+            >
               <Building2 className="w-4 h-4" />
               {businessData.category}
             </Badge>
           </div>
-          <div className="flex items-center gap-2 text-muted-foreground mt-2">
+          <div className="flex items-center gap-2 text-[#7E69AB] mt-2">
             <MapPin className="w-4 h-4" />
             {businessData.address}
           </div>
@@ -70,22 +75,27 @@ export default function PublicBusinessPage() {
       </Card>
 
       <div className="space-y-4">
-        <h2 className="text-xl font-semibold">Reviews</h2>
+        <h2 className="text-xl font-semibold text-[#6E59A5]">Reviews</h2>
         {businessData.reviews.map((review) => (
-          <Card key={review.id} className="w-full">
+          <Card 
+            key={review.id} 
+            className="w-full glass-card border-[#9b87f5]/20 hover:border-[#9b87f5]/40 transition-colors"
+          >
             <CardContent className="pt-6">
               <div className="flex items-start gap-4">
                 <Link to={`/reviewer/${review.reviewer.id}`}>
-                  <Avatar className="w-10 h-10">
+                  <Avatar className="w-10 h-10 ring-2 ring-[#9b87f5] ring-offset-2">
                     <AvatarImage src={review.reviewer.avatar} />
-                    <AvatarFallback>{review.reviewer.initials}</AvatarFallback>
+                    <AvatarFallback className="bg-[#9b87f5] text-white">
+                      {review.reviewer.initials}
+                    </AvatarFallback>
                   </Avatar>
                 </Link>
                 <div className="flex-1">
                   <div className="flex items-center justify-between">
                     <Link 
                       to={`/reviewer/${review.reviewer.id}`}
-                      className="font-medium hover:underline"
+                      className="font-medium text-[#6E59A5] hover:text-[#9b87f5] transition-colors"
                     >
                       {review.reviewer.name}
                     </Link>
@@ -93,13 +103,13 @@ export default function PublicBusinessPage() {
                       {Array.from({ length: review.rating }).map((_, i) => (
                         <Star 
                           key={i} 
-                          className="w-4 h-4 text-yellow-400 fill-current" 
+                          className="w-4 h-4 text-[#9b87f5] fill-current" 
                         />
                       ))}
                     </div>
                   </div>
-                  <p className="mt-2 text-muted-foreground">{review.content}</p>
-                  <span className="text-sm text-muted-foreground mt-2 block">
+                  <p className="mt-2 text-[#7E69AB]">{review.content}</p>
+                  <span className="text-sm text-[#7E69AB]/70 mt-2 block">
                     {new Date(review.date).toLocaleDateString()}
                   </span>
                 </div>
