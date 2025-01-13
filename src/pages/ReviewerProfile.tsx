@@ -32,21 +32,25 @@ const reviewerData = {
 
 export default function ReviewerProfile() {
   return (
-    <div className="container mx-auto p-6 space-y-6">
-      <Card className="w-full">
+    <div className="container mx-auto p-6 space-y-6 bg-[#F2FCE2]/30">
+      <Card className="w-full glass-card border-[#9b87f5]/20">
         <CardHeader>
           <div className="flex items-start gap-6">
-            <Avatar className="w-20 h-20">
+            <Avatar className="w-20 h-20 ring-2 ring-[#9b87f5] ring-offset-2">
               <AvatarImage src={reviewerData.avatar} />
-              <AvatarFallback className="text-xl">{reviewerData.initials}</AvatarFallback>
+              <AvatarFallback className="text-xl bg-[#9b87f5] text-white">
+                {reviewerData.initials}
+              </AvatarFallback>
             </Avatar>
             <div className="space-y-2">
-              <CardTitle className="text-2xl font-bold">{reviewerData.name}</CardTitle>
-              <div className="flex items-center gap-2 text-muted-foreground">
+              <CardTitle className="text-2xl font-bold text-[#6E59A5]">
+                {reviewerData.name}
+              </CardTitle>
+              <div className="flex items-center gap-2 text-[#7E69AB]">
                 <MapPin className="w-4 h-4" />
                 {reviewerData.location}
               </div>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-4 text-[#7E69AB]">
                 <div className="flex items-center gap-1">
                   <MessageSquare className="w-4 h-4" />
                   <span>{reviewerData.totalReviews} reviews</span>
@@ -62,7 +66,11 @@ export default function ReviewerProfile() {
         <CardContent>
           <div className="flex flex-wrap gap-2">
             {reviewerData.badges.map((badge) => (
-              <Badge key={badge} variant="secondary">
+              <Badge 
+                key={badge} 
+                variant="secondary"
+                className="bg-[#E5DEFF] text-[#6E59A5] hover:bg-[#D6BCFA]"
+              >
                 {badge}
               </Badge>
             ))}
@@ -71,24 +79,27 @@ export default function ReviewerProfile() {
       </Card>
 
       <div className="space-y-4">
-        <h2 className="text-xl font-semibold">Recent Reviews</h2>
+        <h2 className="text-xl font-semibold text-[#6E59A5]">Recent Reviews</h2>
         {reviewerData.recentReviews.map((review) => (
-          <Card key={review.id} className="w-full">
+          <Card 
+            key={review.id} 
+            className="w-full glass-card border-[#9b87f5]/20 hover:border-[#9b87f5]/40 transition-colors"
+          >
             <CardContent className="pt-6">
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <h3 className="font-medium">{review.businessName}</h3>
+                  <h3 className="font-medium text-[#6E59A5]">{review.businessName}</h3>
                   <div className="flex items-center">
                     {Array.from({ length: review.rating }).map((_, i) => (
                       <Star 
                         key={i} 
-                        className="w-4 h-4 text-yellow-400 fill-current" 
+                        className="w-4 h-4 text-[#9b87f5] fill-current" 
                       />
                     ))}
                   </div>
                 </div>
-                <p className="text-muted-foreground">{review.content}</p>
-                <span className="text-sm text-muted-foreground block">
+                <p className="text-[#7E69AB]">{review.content}</p>
+                <span className="text-sm text-[#7E69AB]/70 block">
                   {new Date(review.date).toLocaleDateString()}
                 </span>
               </div>
