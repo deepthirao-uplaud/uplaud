@@ -3,6 +3,8 @@ import Index from "./pages/Index";
 import SignUp from "./pages/SignUp";
 import BusinessProfile from "./pages/BusinessProfile";
 import GenerateQR from "./pages/GenerateQR";
+import PublicBusinessPage from "./pages/PublicBusinessPage";
+import ReviewerProfile from "./pages/ReviewerProfile";
 
 function App() {
   return (
@@ -12,6 +14,8 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/business-profile" element={<BusinessProfile />} />
         <Route path="/generate-qr" element={<GenerateQR />} />
+        <Route path="/business/:id" element={<PublicBusinessPage />} />
+        <Route path="/reviewer/:id" element={<ReviewerProfile />} />
       </Routes>
     </Router>
   );
